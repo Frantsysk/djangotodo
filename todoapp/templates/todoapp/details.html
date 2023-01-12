@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="stylesheet" href="{% static 'todoapp/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class = 'tasks'>
+        <h3 class="descbut"> Title</h3>
+        <br>
+        <div class='task'> {{tododetails.title}} </div>
+        <h3 class="descbut"> Description </h3>
+        <br>
+        <div class='task'> {{tododetails.description}} </div>
+        <h3 class="descbut"> Deadline </h3>
+        <br>
+        <div class='task'> {{tododetails.deadline}} </div>
+        <div id="delform" class="form">
+        <a id='mainpage' class="add" href="{% url 'todomain' %}"> Main Page </a>
+        <a id="updatepage" class="add" href="{% url 'update' tododetails.id %}"> Update</a>
+        </div>
+    </div>
+            
+</div>
+
+</body>
+</html>
