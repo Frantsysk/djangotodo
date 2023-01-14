@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import TodoDatabase
+from django.contrib.auth import logout, login, authenticate
 
 def todopage(request):
     todo1 = TodoDatabase.objects.all()
@@ -49,6 +50,30 @@ def updatetask(request, pk):
     print(request.POST.get('deadline'))
     updatetask1.save()
     return redirect('update', pk)
+
+def userlogout(request):
+    logout(request)
+    return redirect('authpage')
+
+def authpage(request):
+    return render(request, 'todoapp/loginpage.html')
+
+# def userlogin(request):
+#     return render(request, 'todoapp/loginpage.html')
+
+def loginaction(request):
+    username_var = request.POST.get('username')
+    password_var = request.POST.get('password')
+    auth_var = authenticate(request, username = username_var, password = password_var)
+    if auth_var is not None:
+        login(request, auth_var)
+    return redirect('todomain')
+
+
+
+
+
+
 
 
 

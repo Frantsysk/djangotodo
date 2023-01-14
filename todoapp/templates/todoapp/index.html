@@ -2,53 +2,62 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="{% static 'todoapp/style.css' %}">
 </head>
-<body>
 
- <div class="container">
-    <div class = 'tasks' id="updatediv">
-        <h3>What's gonna be the task?</h3>
-        <form id='inform' class="form" method="post" action="{% url 'newtask' %}">
-            {% csrf_token %}
-            <div> <input  id="intitle" name="title" type="text" class="input" placeholder="Title"/> </div>
-            <div> <input id="indescription"  name="description" type="text" class="input" placeholder="Description"/> </div>
-            <div>  <input id="indeadline"  name="deadline" type="date" class="input" /> </div>
-            <div> <input id='insubmit' type="submit" class="add" value="Add Task" /> </div>
-        </form>
+<body>
+    <nav>
+        <a class="userspan" href="{% url 'userlogout' %}"> Log out</a>
+        <span class="userspan">User: {{request.user}}</span> 
+        <a class="userspan" href="{% url 'authpage' %}"> Sign Up </a>
+    </nav>
+
+    <div class="container">
+        <div class='tasks' id="updatediv">
+            <h3>What's gonna be the task?</h3>
+            <form id='inform' class="form" method="post" action="{% url 'newtask' %}">
+                {% csrf_token %}
+                <div> <input id="intitle" name="title" type="text" class="input" placeholder="Title" /> </div>
+                <div> <input id="indescription" name="description" type="text" class="input"
+                        placeholder="Description" /> </div>
+                <div> <input id="indeadline" name="deadline" type="date" class="input" /> </div>
+                <div> <input id='insubmit' type="submit" class="add" value="Add Task" /> </div>
+            </form>
         </div>
         <div class="tasks">
             <h3>All Tasks</h3>
             <br>
             {% if todokey %}
             {% for i in todokey %}
-            <a href="{% url 'details' i.id %}" class="task" > {{i.title}}
-            <form method="post" action="{% url 'deletetask' %}" >
-                {% csrf_token %}
-                <input type="hidden" name="id" value={{i.id}}>
-                <a href=""></a>
-                <button id="trash" type="submit" > <i class="fa-solid fa-trash"></i> </button>  
-                
+            <div class="task">
+                <a class="trash" href="{% url 'details' i.id %}"> {{i.title}} </a>
+                <form class="formeditdelete" method="post" action="{% url 'deletetask' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value={{i.id}}>
+                    <a href="{% url 'update' i.id %}" class="trash"> <i class="fa-regular fa-pen-to-square"></i> </a>
+                    <button class="trash" type="submit"> <i class="fa-solid fa-trash"></i> </button>
 
-            </form>
-            </a>
+                </form>
+            </div>
             {% endfor %}
             {% else %}
             <div class="task"> You haven't add any items yet </div>
             {% endif %}
-            <form id="delform" method="post" class="form" action="{% url 'deleteall' %}" >
+            <form id="delform" method="post" class="form" action="{% url 'deleteall' %}">
                 {% csrf_token %}
-            <input id='deleteall' type="submit" class="add" value="Delete all"> 
+                <input id='deleteall' type="submit" class="add" value="Delete all">
             </form>
         </div>
-     
-        </div>
+
+    </div>
 
 
     <script src="{% static 'todoapp/script.js' %}"></script>
 </body>
+
 </html>

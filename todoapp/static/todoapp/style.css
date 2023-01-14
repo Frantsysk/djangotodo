@@ -156,8 +156,22 @@
         padding: 2x 6px;
     }
 
-    #trash {
+    .trash {
         border: none;
-        background-color: white;
-        padding-right: 3px;
+        background-color: rgb(255, 255, 255);
+        display: inline;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        font-size: 16px;
     }
+
+    .userspan {
+        color: black;
+        background-color: white;
+        border-radius: 15px;
+        padding: 0px 10px;
+        text-decoration: none;
+    }
+
+
