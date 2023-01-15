@@ -18,7 +18,7 @@
     </nav>
 
     <div class="container">
-        <div class='tasks'>
+        <div id='divtaskid' class='tasks'>
             <h3>What's gonna be the task?</h3>
             <form id='inform' class="form" method="post" action="{% url 'newtask' %}">
                 {% csrf_token %}
@@ -29,6 +29,7 @@
                 <div> <input id='insubmit' type="submit" class="add" value="Add Task" /> </div>
             </form>
         </div>
+
         <div class="tasks">
             <h3>All Tasks</h3>
             <br>
