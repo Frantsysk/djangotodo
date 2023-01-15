@@ -14,11 +14,11 @@
     <nav>
         <a class="userspan" href="{% url 'userlogout' %}"> Log out</a>
         <span class="userspan">User: {{request.user}}</span> 
-        <a class="userspan" href="{% url 'authpage' %}"> Sign Up </a>
+        <!-- <a class="userspan" href="{% url 'authpage' %}"> Sign Up </a> -->
     </nav>
 
     <div class="container">
-        <div class='tasks' id="updatediv">
+        <div class='tasks'>
             <h3>What's gonna be the task?</h3>
             <form id='inform' class="form" method="post" action="{% url 'newtask' %}">
                 {% csrf_token %}

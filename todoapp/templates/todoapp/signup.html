@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'todoapp/style.css' %}">
+    <title>Sign up</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class='tasks'>
+            <h3>Sign Up</h3>
+            <form id='inform' class="form" method="post" action="{% url 'signupaction' %}">
+                {% csrf_token %}
+                <div> <input id="intitle" name="username" type="text" class="input" placeholder="username" /> </div>
+                <div> <input id="intitle" name="email" type="email" class="input" placeholder="email" /> </div>
+                <div> <input id="password" name="password" type="password" class="input" placeholder="password" />
+                </div>
+                <div> <input id='insubmit' type="submit" class="add" value="Sign up" /> </div>
+            </form>       
+            <p> Already have an account? <a href="{% url 'authpage' %}"> Log in </a>
+        </div>
+    </div>
+
+</body>
+
+</html>
